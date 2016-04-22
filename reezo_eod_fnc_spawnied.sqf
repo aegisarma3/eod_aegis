@@ -16,13 +16,13 @@ _rangeMax = (_this select 1) select 1;
 
 //Check for other IEDs in the area
 private ["_near"];
-_near = nearestObjects [_soldier, ["Land_IED_v1_PMC","Land_IED_v2_PMC","Land_IED_v3_PMC","Land_IED_v4_PMC"], _rangeMax];
+_near = nearestObjects [_soldier, ["ACE_IEDLandBig_Range","ACE_IEDUrbanBig_Range","ACE_IEDLandSmall_Range","ACE_IEDUrbanSmall_Range"], _rangeMax];
 
 if (count _near > 0) exitWith {}; //Exit if other IEDs are found
 
 //CHECK HOW MANY ROADS ARE IN THE AREA
 private ["_nearRoads","_goodSpots","_nearRoads"];
-_goodSpots = []; 
+_goodSpots = [];
 _nearRoads = (getPos _soldier) nearRoads _rangeMax;
 
 if (count _nearRoads == 0) exitWith {}; //Exit if no roads are found
@@ -47,8 +47,8 @@ if (count _nearBodies > 0) exitWith {}; //Exit if bodies are near (this way the 
 
 //IF IT IS ALL GOOD, SPAWN THE IED
 _soldier setVariable ["reezo_eod_avail",false];
-_IEDskins = ["Land_IED_v1_PMC","Land_IED_v2_PMC","Land_IED_v3_PMC","Land_IED_v4_PMC"];
+_IEDskins = ["ACE_IEDLandBig_Range","ACE_IEDUrbanBig_Range","ACE_IEDLandSmall_Range","ACE_IEDUrbanSmall_Range"];
 _IED = createVehicle [_IEDskins select (floor (random (count _IEDskins))),_IEDpos, [], 5 + random 5, "NONE"];
 _IED setDir (random 360);
 
-if (true) exitWith{ nul0 = [_soldier, _IED, _rangeMax] execVM "x\eod\addons\eod\IED_postServerInit.sqf" };
+if (true) exitWith{ nul0 = [_soldier, _IED, _rangeMax] execVM "\eod\IED_postServerInit.sqf" };

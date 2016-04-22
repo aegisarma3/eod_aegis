@@ -25,13 +25,13 @@ switch (true) do {
 		_triggerman removeAllEventHandlers "firednear";
 		_rnd = random 1;
 		if (_rnd < 0.5) then {
-			_triggerman addMagazine "8Rnd_9x18_Makarov";
-			_triggerman addMagazine "8Rnd_9x18_Makarov";
-			_triggerman addWeapon "Makarov";
+			_triggerman addMagazine "16Rnd_9x21_Mag";
+			_triggerman addMagazine "16Rnd_9x21_Mag";
+			_triggerman addWeapon "hgun_P07_F";
 		} else {
-			_triggerman addMagazine "30Rnd_9x19_UZI";
-			_triggerman addMagazine "30Rnd_9x19_UZI";
-			_triggerman addWeapon "UZI_EP1";
+			_triggerman addMagazine "30Rnd_9x21_Mag";
+			_triggerman addMagazine "30Rnd_9x21_Mag";
+			_triggerman addWeapon "hgun_PDW2000_F";
 		};
 		_triggerman addRating -1000;
 		_triggerman setBehaviour "COMBAT";
@@ -42,19 +42,19 @@ switch (true) do {
 	};
 	case (_rnd > 0.66) : {
 		_triggerman removeAllEventHandlers "firednear";
-		
+
 		_rnd = random 1;
 		if (_rnd < 0.5) then {
-			_triggerman addMagazine "8Rnd_9x18_Makarov";
-			_triggerman addMagazine "8Rnd_9x18_Makarov";
-			_triggerman addWeapon "Makarov";
+			_triggerman addMagazine "16Rnd_9x21_Mag";
+			_triggerman addMagazine "16Rnd_9x21_Mag";
+			_triggerman addWeapon "hgun_P07_F";
 		} else {
-			_triggerman addMagazine "30Rnd_9x19_UZI";
-			_triggerman addMagazine "30Rnd_9x19_UZI";
-			_triggerman addWeapon "UZI_EP1";
+			_triggerman addMagazine "30Rnd_9x21_Mag";
+			_triggerman addMagazine "30Rnd_9x21_Mag";
+			_triggerman addWeapon "hgun_PDW2000_F";
 		};
 		_triggerman addRating -1000;
-		
+
 		private ["_group","_segno","_escapePos","_posX","_posY"];
 		_group = group _triggerman;
 		_segno = random 1; if (_segno < 0.5) then { _posX = 300 + random 300 } else { _posX = 300 - random 300 };
@@ -64,13 +64,12 @@ switch (true) do {
 		deleteWaypoint [_group, 0];
 		deleteWaypoint [_group, 1];
 		deleteWaypoint [_group, 2];
-		deleteWaypoint [_group, 3]; 
-		
+		deleteWaypoint [_group, 3];
+
 		_group addWaypoint [_escapePos, 0];
 		[_group, 0] setWaypointType "MOVE";
 		[_group, 0] setWaypointBehaviour "SAFE";
-		[_group, 0] setWaypointSpeed "FULL";       
-		
+		[_group, 0] setWaypointSpeed "FULL";
+
 	};
 };
-

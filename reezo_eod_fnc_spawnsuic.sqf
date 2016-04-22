@@ -26,12 +26,12 @@ if (count _near > 0) then
 	{
 		private ["_thisNear"];
 		_thisNear = _near select _i;
-		
+
 		if (_thisNear getVariable "reezo_eod_trigger" == "suicide") exitWith
 		{
 			//player globalChat "SUICIDE BOMBER FOUND IN THE AREA. NOT SPAWNING ANOTHER ONE";
 		}; //If a suicide bomber is already in the area, exit
-		
+
 		if (_thisNear distance _soldier > _rangeMin && side _thisNear == CIVILIAN) then
 		{
 			_nearCivs set [count _nearCivs, _thisNear]; //Create an array made only of nearby civilians
@@ -47,16 +47,16 @@ if (count _nearCivs > 0) exitWith
 	waitUntil {!isNull _bomber};
 	_bomber setVariable ["reezo_eod_trigger","suicide"];
 	waitUntil { !isNil {_bomber getVariable "reezo_eod_trigger"} };
-	
+
 	_soldier setVariable ["reezo_eod_avail",false];
-	nul0 = [_soldier, _bomber, _rangeMax] execVM "x\eod\addons\eod\reezo_eod_suicidebomber.sqf";
+	nul0 = [_soldier, _bomber, _rangeMax] execVM "\eod\reezo_eod_suicidebomber.sqf";
 };
 
 //At this point no suitable civilian was found and we are going to spawn one, specifically to make it a suicide bomber
 private ["_grp","_skins","_bomber"];
 _grp = createGroup CIVILIAN;
-_skins = ["TK_CIV_Takistani01_EP1","TK_CIV_Takistani02_EP1","TK_CIV_Takistani03_EP1","TK_CIV_Takistani04_EP1","TK_CIV_Takistani05_EP1","TK_CIV_Takistani06_EP1","TK_CIV_Worker01_EP1","TK_CIV_Worker02_EP1"];
-_bomber = _grp createUnit [(_skins select (floor (random (count _skins)))), getPos _soldier, [], _rangeMax, "NONE"];
+_skins = ["C_man_1","C_man_polo_2_F","C_man_polo_5_F","C_man_polo_6_F","C_man_1_3_F","C_man_p_fugitive_F","C_man_polo_4_F"];
+_bomber = _grp createVehicle [(_skins select (floor (random (count _skins)))), getPos _soldier, [], _rangeMax, "NONE"];
 waitUntil {!isNull _bomber};
 _bomber setVariable ["reezo_eod_trigger","suicide"];
 waitUntil { !isNil {_bomber getVariable "reezo_eod_trigger"} };
@@ -64,4 +64,4 @@ waitUntil { !isNil {_bomber getVariable "reezo_eod_trigger"} };
 
 //Let's run the Suicide Bomber behaviour script and then exit
 _soldier setVariable ["reezo_eod_avail",false];
-nul0 = [_soldier, _bomber, _rangeMax] execVM "x\eod\addons\eod\reezo_eod_suicidebomber.sqf";
+nul0 = [_soldier, _bomber, _rangeMax] execVM "\eod\reezo_eod_suicidebomber.sqf";
